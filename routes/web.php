@@ -22,9 +22,14 @@ Route::get('/', function () {
 
 Route::get('/send-notification',function()
 {  
-   $user =User::find(1);
+   $users =User::all();
 //    $user->notify(new EmailNotification());
-Notification::send($user, new EmailNotification());
+// Notification::send($user, new EmailNotification());
+
+foreach ($users as  $user) {
+    Notification::send($user, new EmailNotification());
+}
+return redirect()->back();
    
 });
 
