@@ -7,8 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-      <h1>This Mail</h1>
-      <h3>Web journey</h3>
+      <h1>Hello</h1>
+      <h3>{{ $name }}</h3>
+      <h3>{{ $messsage }}</h3>
+
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex doloremque suscipit adipisci quidem itaque, omnis obcaecati temporibus ab quas tempora explicabo, nesciunt modi ducimus harum aperiam necessitatibus, voluptates maiores ea.</p>
 </body>
 </html>

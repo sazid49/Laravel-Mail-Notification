@@ -7,37 +7,27 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EmailNotification extends Notification
+class EmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    
+     public $name = '';
+     public $messsage='';
+  
+    public function __construct($name,$messsage)
     {
-        //
+        $this->name=$name;
+        $this->messsage=$messsage;
+
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
+  
     public function via($notifiable)
     {
         return ['mail'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
+   
     public function toMail($notifiable)
     {
         // return (new MailMessage)
@@ -45,7 +35,11 @@ class EmailNotification extends Notification
         //             ->action('Notification Action', url('/'))
         //             ->line('Thank you for using our application!')
         //              ->line('Web Jouyrney');
-         return (new MailMessage)->view('notification');
+
+        $name=$this->name;
+        $messsage=$this->messsage;
+
+         return (new MailMessage)->view('notification',compact('name','messsage'));
 
     }
           
